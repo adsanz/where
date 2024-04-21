@@ -69,13 +69,10 @@ WHERE_TO_FIND="~/" where-finder --type dir -e 'target'
 WHERE_TO_FIND="~/test:~/test2" where-finder --type file -e '.py'
 # find in current path all files that contain IPs with depth 2
 where-finder --type content -e '\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b' -m 2
+# on content searches you can also use "-v" or verbose so it will give you back the first line matched. Be aware that might affecte performance.
+time WHERE_TO_FIND="~/test" where-finder --type content -e 'super-secret-key' -v 
 ```
 
-### Performance advice
+### Performance 
 
-File and dir search works great, but file content search might be really slow, there are a lot of variables from file lenght to the complexity of the regex expression. Again this is a personal project, if you would like to contribute feel free to open a PR. 
-
-# Gotchas
-- try to implement LRU cache to save results instead of vec.
-- try to implement rayon into_par_iter for better performance at least reading files.
-- format and fix spagetti code
+Rayon is used on file and content searches. Directories do not have any performance improvement. 
