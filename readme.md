@@ -23,9 +23,9 @@ cargo build --release
 cd target/release
 sudo cp where /usr/local/bin/where-finder # you can use "where" but may mess up with already present binaries
 where-finder --help
-A fast file system search tool
+A fast file system search tool. Remember to set WHERE_TO_FIND env variable to the directories you want to search in.
 
-Usage: where-finder [OPTIONS] --expression <EXPRESSION>
+Usage: where [OPTIONS] --expression <EXPRESSION>
 
 Options:
   -t, --type <TYPE>
@@ -41,11 +41,15 @@ Options:
           
           [default: 10]
 
+  -v, --verbose
+          Verbose mode - allows first line of content matched by regex to be displayed. May decrease performance Only works with content search
+
   -h, --help
           Print help (see a summary with '-h')
 
   -V, --version
           Print version
+
 ```
 
 ## Usage
